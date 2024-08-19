@@ -9,6 +9,8 @@ import Calendar from './pages/Calendar';
 import Bookmark from './pages/Bookmark';
 import NotFound from './pages/NotFound';
 import New from './pages/New';
+import { ModalContextProvider } from './context/ModalContext';
+import AuthContextProvider from './context/AuthContext';
 
 
 const router = createBrowserRouter([
@@ -29,7 +31,12 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthContextProvider>
+      <ModalContextProvider>
+        <RouterProvider router={router} />
+        <div id="portal" />
+      </ModalContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 
