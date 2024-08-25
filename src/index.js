@@ -11,7 +11,7 @@ import NotFound from './pages/NotFound';
 import New from './pages/New';
 import { ModalContextProvider } from './context/ModalContext';
 import AuthContextProvider from './context/AuthContext';
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const router = createBrowserRouter([
   {
@@ -28,14 +28,19 @@ const router = createBrowserRouter([
     ]
   },
 ]);
+
+const queryClient = new QueryClient();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <ModalContextProvider>
-        <RouterProvider router={router} />
-        <div id="portal" />
-      </ModalContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <ModalContextProvider>
+          <RouterProvider router={router} />
+          <div id="portal" />
+        </ModalContextProvider>
+      </QueryClientProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { addUser } from './sanity';
 
 
 const firebaseConfig = {
@@ -20,7 +21,7 @@ export async function login() {
     return signInWithPopup(auth, provider)
         .then(result => {
             const user = result.user;
-            console.log(user)
+            addUser(user)
         })
         .catch(console.error)
 }

@@ -9,7 +9,6 @@ export default function AuthContextProvider({ children }) {
     useEffect(() => {
         authUpdate(setUser);
     })
-    console.log(user)
 
     return (
         <AuthContext.Provider value={{ user, login, logout }}>
