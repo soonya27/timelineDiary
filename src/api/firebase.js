@@ -4,13 +4,13 @@ import { addUser } from './sanity';
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCKdaIl4H03Jqzlqvw18DvlARS_ZPJxzlw",
-    authDomain: "timelinediary-56539.firebaseapp.com",
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
     projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: "timelinediary-56539.appspot.com",
-    messagingSenderId: "882179305256",
-    appId: "1:882179305256:web:176d58155319577018aa1d",
-    measurementId: "G-9Y4YTNRK9N"
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGEING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
