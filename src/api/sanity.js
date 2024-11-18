@@ -28,14 +28,14 @@ export async function addUser({ uid, displayName, photoURL }) {
 }
 
 export async function getPosts(uid) {
-  const posts = await client.fetch(`*[_type == "post" && author._id == ${uid}] {
+  const posts = await client.fetch(`*[_type == "post" && author._id == ${uid}] | order(_createdAt desc) {
     ${postProjection}
     }`);
   return posts;
 }
 
 export async function getPostsByBookmark(uid) {
-  const posts = await client.fetch(`*[_type == "post" && author._id == ${uid} && bookmark == true ]{
+  const posts = await client.fetch(`*[_type == "post" && author._id == ${uid} && bookmark == true ] | order(_createdAt desc) {
      ${postProjection}
      }`);
   return posts;

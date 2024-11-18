@@ -18,7 +18,7 @@ export default function Bookmark() {
     return <div>기본 sample...</div>; // uid가 준비되지 않았을 때의 처리
   }
   return (
-    <section>
+    <section className="p-3 pt-0">
       {/* <Button text='login' onClick={() => login()} /> */}
       {data && (
         <ul>

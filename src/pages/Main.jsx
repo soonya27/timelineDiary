@@ -10,7 +10,7 @@ export default function Main() {
   return (
     <div className="flex flex-col md:flex-row h-screen">
       {pathname !== "/new" && <Navbar />}
-      <div className="flex-grow-[1] flex-shrink-[1] basis-auto overflow-y-auto p-3 bg-gray-100">
+      <div className="flex-grow-[1] flex-shrink-[1] basis-auto overflow-y-auto pt-0 bg-gray-100">
         <Outlet />
       </div>
       {/* <Footer /> */}

@@ -6,3 +6,12 @@ export function parseDate(date) {
 
   return format(date, "ko");
 }
+
+/**
+ * yyyy-mm-dd
+ * @param {*} date
+ * @returns
+ */
+export function formatDate(date) {
+  return new Date(date).toISOString().split("T")[0];
+}
