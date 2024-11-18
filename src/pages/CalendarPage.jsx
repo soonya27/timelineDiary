@@ -33,7 +33,6 @@ export default function CalendarPage() {
         prev2Label={null}
         minDetail="year"
         className="w-full"
-        // 오늘 날짜로 돌아오는 기능을 위해 필요한 옵션 설정
         activeStartDate={activeStartDate === null ? undefined : activeStartDate}
         onActiveStartDateChange={({ activeStartDate }) => setActiveStartDate(activeStartDate)}
         tileContent={({ date, view }) => {
@@ -42,9 +41,9 @@ export default function CalendarPage() {
             html.push(<div className="dot"></div>);
           }
           return (
-            <>
+            <div key="">
               <div className="flex justify-center items-center absoluteDiv">{html}</div>
-            </>
+            </div>
           );
         }}
       />

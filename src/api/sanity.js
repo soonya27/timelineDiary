@@ -28,14 +28,16 @@ export async function addUser({ uid, displayName, photoURL }) {
 }
 
 export async function getPosts(uid) {
-  const posts = await client.fetch(`*[_type == "post" && author._id == ${uid}] | order(_createdAt desc) {
+  const posts =
+    await client.fetch(`*[_type == "post" && author._id == ${uid}] | order(_createdAt desc) {
     ${postProjection}
     }`);
   return posts;
 }
 
 export async function getPostsByBookmark(uid) {
-  const posts = await client.fetch(`*[_type == "post" && author._id == ${uid} && bookmark == true ] | order(_createdAt desc) {
+  const posts =
+    await client.fetch(`*[_type == "post" && author._id == ${uid} && bookmark == true ] | order(_createdAt desc) {
      ${postProjection}
      }`);
   return posts;
@@ -50,3 +52,32 @@ export async function getPostsByBookmark(uid) {
 //     const result = client.patch(_id).set({title})
 //     return result
 //   }
+
+export async function addBookmarkByUser(userId, postId) {
+  return client
+    .patch(postId)
+    .setIfMissing({ bookmark: true })
+    .append("bookmark", true)
+    .commit({ autoGenerateArrayKeys: true });
+}
+
+export async function removeBookmarkByUser(userId, postId) {
+  return client
+    .patch(postId)
+    .unset([`bookmark[_ref=="${userId}"]`])
+    .commit();
+}
+
+export async function createPost(userId, text, file) {
+  return client.assets.upload("image", file).then((result) => {
+    return client.create(
+      {
+        _type: "post",
+        author: { _ref: userId },
+        photo: { asset: { _ref: result._id } },
+        bookmark: false,
+      },
+      { autoGenerateArrayKeys: true }
+    );
+  });
+}
